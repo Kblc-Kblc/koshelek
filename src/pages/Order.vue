@@ -9,7 +9,6 @@
         <v-card>
           <v-card-title>
             Asks
-            <v-spacer></v-spacer>
           </v-card-title>
           <v-data-table
             :headers="headers"
@@ -17,6 +16,7 @@
             :search="searchAsk"
             :items-per-page="rowsPerPage"
             :items-per-page-options="itemsPerPageOptions"
+            :class="{ 'hide-inputs': !mdAndUp }"
             class="elevation-1"
             fixed-header
             :height="tableHeight"
@@ -29,7 +29,6 @@
         <v-card>
           <v-card-title>
             Bids
-            <v-spacer></v-spacer>
           </v-card-title>
           <v-data-table
             :headers="headers"
@@ -37,6 +36,7 @@
             :search="searchBid"
             :items-per-page="rowsPerPage"
             :items-per-page-options="itemsPerPageOptions"
+            :class="{ 'hide-inputs': !mdAndUp }"
             class="elevation-1"
             fixed-header
             :height="tableHeight"
@@ -57,7 +57,7 @@ const store = useCurrencyPairStore();
 const { mdAndUp } = useDisplay();
 
 const tableHeight = computed(() => {
-  return mdAndUp.value ? 'calc(32vh - 48px)' : 'calc(26vh - 48px)';
+  return mdAndUp.value ? 'calc(32vh - 48px)' : 'calc(22vh - 48px)';
 });
 
 const currentPair = computed(() => {
@@ -88,9 +88,9 @@ function updateRowsPerPage(newVal) {
 }
 
 const headers = [
-  { title: 'Price', value: 'price' },
-  { title: 'Quantity', value: 'quantity' },
-  { title: 'Total', value: 'total' }
+  { title: 'Price', value: 'price', key: 'price' },
+  { title: 'Quantity', value: 'quantity', key: 'quantity' },
+  { title: 'Total', value: 'total', key: 'total' }
 ];
 
 const orderBookAsks = computed(() => {
@@ -116,3 +116,16 @@ const orderBookBids = computed(() => {
 });
 </script>
 
+<style lang="scss" scoped>
+  :deep(.hide-inputs) {
+    .v-data-table__td {
+      height: auto;
+    }
+    .v-data-table-header__content {
+      .v-input--horizontal {
+        display: none;
+      }
+    }
+
+  }
+</style>

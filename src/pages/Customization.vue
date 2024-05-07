@@ -7,9 +7,9 @@
     ></v-select>
 
     <div>
-      <h3>Лог изменений:</h3>
-      <ul>
-        <li v-for="log in changeLogs" :key="log.timestamp">
+      <h3 class="mb-2">Лог изменений</h3>
+      <ul style="list-style-type: none;">
+        <li v-for="log in changeLogs" :key="log.timestamp" class="mb1">
           {{ log.message }}
         </li>
       </ul>
