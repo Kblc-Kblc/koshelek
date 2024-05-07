@@ -1,0 +1,1 @@
+import{p as e,ah as n,e as o}from"./index-C1oULFvP.js";const i=["static","relative","fixed","absolute","sticky"],u=e({position:{type:String,validator:t=>i.includes(t)}},"position");function p(t){let s=arguments.length>1&&arguments[1]!==void 0?arguments[1]:n();return{positionClasses:o(()=>t.position?`${s}--${t.position}`:void 0)}}export{u as m,p as u};
